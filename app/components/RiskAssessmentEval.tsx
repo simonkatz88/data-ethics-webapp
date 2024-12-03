@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
@@ -38,7 +38,82 @@ interface Section {
 
 type ResponseValue = 'yes' | 'no' | 'unsure';
 type Responses = Record<string, ResponseValue>;
-
+const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
+    <div className="max-w-3xl mx-auto p-4 space-y-8">
+      <Card className="bg-gradient-to-br from-maroon-50 to-maroon-100" style={{ '--tw-gradient-from': '#FFF1F1', '--tw-gradient-to': '#FFE4E4' }}>
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold" style={{ color: '#800000' }}>
+            A Taxonomy of Normative Concepts for Evaluating Pre-Trial Risk Assessment Algorithms
+          </CardTitle>
+          <div className="text-sm text-gray-600">
+            By Colin McNamara-Bordewick, Simon Katz, Ethan Hochstim
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="prose max-w-none">
+            <h3 className="text-xl font-semibold" style={{ color: '#800000' }}>Introduction</h3>
+            <p className="text-gray-700">
+              This evaluation framework addresses a critical question in criminal justice:
+            </p>
+            <blockquote className="border-l-4 pl-4 my-4" style={{ borderColor: '#800000' }}>
+              What normative concepts do scholars use to evaluate the "goodness" of pre-trial risk assessment algorithms; what considerations shape how these concepts get measured?
+            </blockquote>
+            <p className="text-gray-700">
+              As algorithms increasingly inform judges' decisions about pre-trial release, their implementation brings both promises (improved consistency, reduced bias) and perils (potential discrimination, lack of transparency).
+            </p>
+            <p className="text-gray-700">
+              However, the discourse suffers from a crisis of language. Different scholars apply vastly different criteria when evaluating these algorithms, leading to conceptual confusion both within and across normative dimensions.
+            </p>
+            
+            <h4 className="text-lg font-semibold mt-6" style={{ color: '#800000' }}>Core Evaluation Dimensions</h4>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              {[
+                {
+                  title: "Predictive Performance",
+                  description: "The algorithm's ability to predict recidivism risk for out-of-sample observations"
+                },
+                {
+                  title: "Fairness",
+                  description: "Ensuring equitable treatment across individuals and groups"
+                },
+                {
+                  title: "Privacy",
+                  description: "Protecting sensitive data while maintaining necessary access"
+                },
+                {
+                  title: "Interpretability",
+                  description: "Enabling stakeholders to understand and contest decisions"
+                },
+                {
+                  title: "Legal & Political",
+                  description: "Operating within constitutional bounds and maintaining accountability"
+                }
+              ].map((dimension) => (
+                <Card key={dimension.title} className="p-4 bg-white/50">
+                  <h5 className="font-semibold mb-2" style={{ color: '#800000' }}>{dimension.title}</h5>
+                  <p className="text-sm text-gray-600">{dimension.description}</p>
+                </Card>
+              ))}
+            </div>
+  
+            <div className="mt-8">
+              <Button 
+                className="w-full"
+                style={{
+                  backgroundColor: '#800000',
+                  color: 'white'
+                }}
+                onClick={onStart}
+              >
+                Begin Evaluation
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
 const sections = [
     {
       title: "Predictive Performance",
@@ -333,16 +408,23 @@ const sections = [
 // Add importance and resource for all sections...
 
 const RiskAssessmentEval = () => {
-  const [currentSection, setCurrentSection] = useState<number>(0);
-  const [responses, setResponses] = useState<Responses>({});
-  const [showResults, setShowResults] = useState<boolean>(false);
-
-  const handleResponse = (questionId: string, value: ResponseValue) => {
-    setResponses({
-      ...responses,
-      [questionId]: value
-    });
-  };
+    const [showWelcome, setShowWelcome] = useState(true);
+    const [currentSection, setCurrentSection] = useState<number>(0);
+    const [responses, setResponses] = useState<Responses>({});
+    const [showResults, setShowResults] = useState<boolean>(false);
+  
+    const handleStartEvaluation = () => {
+      window.scrollTo(0, 0);
+      setShowWelcome(false);
+    };
+  
+    if (showWelcome) {
+      return (
+        <div className="min-h-screen bg-gray-50 py-8">
+          <WelcomeSection onStart={handleStartEvaluation} />
+        </div>
+      );
+    }
 
   const calculateProgress = () => {
     const totalQuestions = sections.reduce((acc, section) => acc + section.questions.length, 0);
@@ -384,6 +466,14 @@ const RiskAssessmentEval = () => {
       setCurrentSection(currentSection - 1);
     }
   };
+  
+  const handleResponse = (questionId: string, value: ResponseValue) => {
+    setResponses(prev => ({
+      ...prev,
+      [questionId]: value
+    }));
+  };
+  
 
   return (
     <TooltipProvider>
