@@ -572,6 +572,19 @@ const RiskAssessmentEval = () => {
             ) : (
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold" style={{ color: '#800000' }}>Evaluation Results</h3>
+                
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <p className="text-gray-700 mb-2">
+                    <strong>Note on Interpretation:</strong> The goal of this evaluation is not to achieve 100% compliance, 
+                    as many of these criteria involve inherent trade-offs and competing objectives.
+                  </p>
+                  <p className="text-gray-700">
+                    Instead, use these results to understand the various dimensions of algorithmic evaluation and 
+                    to make informed decisions about which trade-offs align with your system's goals and ethical priorities. 
+                    Lower scores in certain areas may be acceptable or even necessary depending on your specific context and requirements.
+                  </p>
+                </div>
+
                 {sections.map((section, index) => (
                   <div key={index} className="space-y-2">
                     <div className="flex justify-between items-center">
