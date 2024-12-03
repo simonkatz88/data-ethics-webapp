@@ -40,7 +40,13 @@ type ResponseValue = 'yes' | 'no' | 'unsure';
 type Responses = Record<string, ResponseValue>;
 const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
     <div className="max-w-3xl mx-auto p-4 space-y-8">
-      <Card className="bg-gradient-to-br from-maroon-50 to-maroon-100" style={{ '--tw-gradient-from': '#FFF1F1', '--tw-gradient-to': '#FFE4E4' }}>
+      <Card 
+        className="bg-gradient-to-br from-maroon-50 to-maroon-100" 
+        style={{ 
+          ['--tw-gradient-from' as string]: '#FFF1F1', 
+          ['--tw-gradient-to' as string]: '#FFE4E4' 
+        }}
+      >
         <CardHeader>
           <CardTitle className="text-2xl font-bold" style={{ color: '#800000' }}>
             A Taxonomy of Normative Concepts for Evaluating Pre-Trial Risk Assessment Algorithms
@@ -56,10 +62,10 @@ const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
               This evaluation framework addresses a critical question in criminal justice:
             </p>
             <blockquote className="border-l-4 pl-4 my-4" style={{ borderColor: '#800000' }}>
-              What normative concepts do scholars use to evaluate the "goodness" of pre-trial risk assessment algorithms; what considerations shape how these concepts get measured?
+              What normative concepts do scholars use to evaluate the &ldquo;goodness&rdquo; of pre-trial risk assessment algorithms; what considerations shape how these concepts get measured?
             </blockquote>
             <p className="text-gray-700">
-              As algorithms increasingly inform judges' decisions about pre-trial release, their implementation brings both promises (improved consistency, reduced bias) and perils (potential discrimination, lack of transparency).
+              As algorithms increasingly inform judges&apos; decisions about pre-trial release, their implementation brings both promises (improved consistency, reduced bias) and perils (potential discrimination, lack of transparency).
             </p>
             <p className="text-gray-700">
               However, the discourse suffers from a crisis of language. Different scholars apply vastly different criteria when evaluating these algorithms, leading to conceptual confusion both within and across normative dimensions.
@@ -478,11 +484,21 @@ const RiskAssessmentEval = () => {
   return (
     <TooltipProvider>
       <div className="max-w-3xl mx-auto p-4">
-        <Card className="bg-gradient-to-br from-maroon-50 to-maroon-100" style={{ '--tw-gradient-from': '#FFF1F1', '--tw-gradient-to': '#FFE4E4' }}>
+        <Card 
+          className="bg-gradient-to-br from-maroon-50 to-maroon-100" 
+          style={{ 
+            ['--tw-gradient-from' as string]: '#FFF1F1', 
+            ['--tw-gradient-to' as string]: '#FFE4E4' 
+          }}
+        >
           <CardHeader className="space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold" style={{ color: '#800000' }}>Risk Assessment System Evaluation</h2>
-              <Progress value={calculateProgress()} className="w-32" style={{ backgroundColor: '#FFE4E4' }}>
+              <Progress value={calculateProgress()} className="w-32" style={{ 
+                backgroundColor: '#FFE4E4',
+                ['--tw-gradient-from' as string]: '#FFF1F1', 
+                ['--tw-gradient-to' as string]: '#FFE4E4' 
+              }}>
                 <div 
                   className="h-full transition-all" 
                   style={{ 
