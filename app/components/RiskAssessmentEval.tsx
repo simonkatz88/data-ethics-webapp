@@ -137,7 +137,7 @@ const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
         },
         {
           id: "pp2",
-          text: "Are ROC-AUC scores above the satisfactory benchmark of 0.70?",
+          text: "Are ROC-AUC scores above 0.70?",
           category: "discrimination",
           description: "AUCs of .70 or above typically indicate satisfactory predictive accuracy.",
           importance: "This benchmark helps ensure the model meets minimum performance standards.",
