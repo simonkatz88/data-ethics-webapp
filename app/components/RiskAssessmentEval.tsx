@@ -92,7 +92,7 @@ const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
                   description: "Enabling stakeholders to understand and contest decisions"
                 },
                 {
-                  title: "Legal & Political",
+                  title: "Governance",
                   description: "Operating within constitutional bounds and maintaining accountability"
                 }
               ].map((dimension) => (
@@ -120,85 +120,63 @@ const WelcomeSection = ({ onStart }: { onStart: () => void }) => (
       </Card>
     </div>
   );
-const sections = [
+  const sections = [
     {
       title: "Predictive Performance",
       questions: [
         {
           id: "pp1",
-          text: "Does the system provide comprehensive error rates and confusion matrices for different demographic groups?",
+          text: "Does the system use discrimination metrics like error rates and confusion matrices to evaluate model performance?",
           category: "discrimination",
-          description: "Error rates and confusion matrices should be calculated across demographic groups to identify potential biases.",
-          importance: "These metrics are fundamental for understanding where the system may be making mistakes and if those mistakes disproportionately affect certain groups.",
+          description: "Error rates and confusion matrices are fundamental metrics for understanding model performance.",
+          importance: "These metrics help identify where and how the model makes mistakes in its predictions.",
           resource: {
-            text: "Understanding Error Rate Metrics in Risk Assessment",
-            link: "https://example.com/error-rates"
+            text: "Evaluating the predictive validity of the COMPAS risk and needs assessment system",
+            link: "https://doi.org/10.1177/0093854808326545"
           }
         },
         {
           id: "pp2",
-          text: "Are ROC-AUC scores and Precision-Recall curves regularly calculated and monitored?",
+          text: "Are ROC-AUC scores above the satisfactory benchmark of 0.70?",
           category: "discrimination",
-          description: "These curves provide a comprehensive view of model performance across different decision thresholds.",
-          importance: "ROC-AUC and PR curves help understand the trade-offs between different types of errors the system might make.",
+          description: "AUCs of .70 or above typically indicate satisfactory predictive accuracy.",
+          importance: "This benchmark helps ensure the model meets minimum performance standards.",
           resource: {
-            text: "Guide to Performance Curve Analysis",
-            link: "https://example.com/roc-pr-curves"
+            text: "Evaluating the predictive validity of the COMPAS risk and needs assessment system",
+            link: "https://doi.org/10.1177/0093854808326545"
           }
         },
         {
           id: "pp3",
-          text: "Are calibration plots comparing predicted vs. observed risk regularly generated?",
+          text: "Are calibration plots comparing predicted vs. observed risk regularly generated and monitored?",
           category: "calibration",
-          description: "Calibration plots help ensure predicted probabilities match actual observed frequencies.",
-          importance: "Good calibration is crucial for ensuring risk scores accurately reflect real-world probabilities.",
+          description: "Calibration plots help ensure risk scores accurately reflect actual outcomes.",
+          importance: "Good calibration is crucial for ensuring predicted probabilities match observed frequencies.",
           resource: {
-            text: "Best Practices in Risk Score Calibration",
-            link: "https://example.com/calibration"
+            text: "Updating the NYC Criminal Justice Agency Release Assessment",
+            link: "https://www.nycja.org/publications/updating-the-new-york-city-criminal-justice-agency-release-assessment"
           }
         },
         {
           id: "pp4",
-          text: "Are Expected/Observed ratios monitored across different risk levels?",
-          category: "calibration",
-          description: "E/O ratios should be tracked to ensure consistency across risk levels.",
-          importance: "These ratios help identify if the system is over- or under-predicting risk for different risk categories.",
+          text: "Is performance regularly compared against human (judge) decisions?",
+          category: "comparative",
+          description: "System predictions should be benchmarked against judicial decisions.",
+          importance: "Comparing against human decisions helps validate the system's utility.",
           resource: {
-            text: "Understanding E/O Ratios in Risk Assessment",
-            link: "https://example.com/eo-ratios"
+            text: "Human decisions and machine predictions",
+            link: "https://doi.org/10.1093/qje/qjx032"
           }
         },
         {
           id: "pp5",
-          text: "Is group-specific calibration regularly assessed?",
-          category: "calibration",
-          description: "Calibration should be evaluated separately for different demographic groups.",
-          importance: "Group-specific calibration helps ensure the system is equally well-calibrated across all populations.",
-          resource: {
-            text: "Group Calibration Assessment Guide",
-            link: "https://example.com/group-calibration"
-          }
-        },
-        {
-          id: "pp6",
-          text: "Is performance regularly compared against judges' decisions?",
-          category: "comparative",
-          description: "System predictions should be benchmarked against human judicial decisions.",
-          importance: "Comparing against human decisions helps validate the system's utility and identify areas for improvement.",
-          resource: {
-            text: "Human-AI Decision Comparison Framework",
-            link: "https://example.com/human-comparison"
-          }
-        },
-        {
-          id: "pp7",
           text: "Does the evaluation account for the selective labels problem?",
           category: "comparative",
-          description: "Analysis should consider that outcome data is only available for released defendants.",
-          importance: "The selective labels problem can create significant biases in performance metrics if not properly addressed.",
+          description: "Analysis must consider that outcome data is only available for released defendants.",
+          importance: "The selective labels problem can create significant biases if not properly addressed.",
           resource: {
-            text: "Addressing Selective Labels in Risk Assessment",
-            link: "https://example.com/selective-labels"
+            text: "Fragile algorithms and fallible decision-makers",
+            link: "https://doi.org/10.1257/jep.35.4.71"
           }
         }
       ]
@@ -208,68 +186,57 @@ const sections = [
       questions: [
         {
           id: "f1",
-          text: "Are technical measures implemented to ensure similar defendants receive similar risk scores?",
+          text: "Is the Lipschitz condition monitored to ensure score stability?",
           category: "individual",
-          description: "Individual fairness measures should be in place based on relevant factors.",
-          importance: "Individual fairness ensures consistency in risk assessment for similar cases, preventing arbitrary differences.",
+          description: "Ensures similar defendants receive similar risk scores.",
+          importance: "Score stability is crucial for individual fairness.",
           resource: {
-            text: "Implementing Individual Fairness Measures",
-            link: "https://example.com/individual-fairness"
+            text: "Fairness through awareness",
+            link: "https://dl.acm.org/doi/10.1145/2090236.2090255"
           }
         },
         {
           id: "f2",
-          text: "Is the Lipschitz condition monitored for score stability?",
+          text: "Are appropriate distance metrics used to measure defendant similarity?",
           category: "individual",
-          description: "The Lipschitz condition ensures small changes in inputs don't lead to large changes in scores.",
-          importance: "Score stability is crucial for ensuring the system's reliability and fairness.",
+          description: "Distance metrics should capture meaningful similarities between cases.",
+          importance: "Well-defined similarity metrics are fundamental for consistent treatment.",
           resource: {
-            text: "Understanding Score Stability Metrics",
-            link: "https://example.com/score-stability"
+            text: "Fairness and interpretability in ML",
+            link: "https://arxiv.org/abs/2012.15816"
           }
         },
         {
           id: "f3",
-          text: "Are appropriate distance metrics used to measure defendant similarity?",
-          category: "individual",
-          description: "Distance metrics should capture meaningful similarities between cases.",
-          importance: "Well-defined similarity metrics are fundamental for ensuring consistent treatment of similar cases.",
+          text: "Is predictive parity monitored across protected groups?",
+          category: "group",
+          description: "Ensures similar prediction accuracy across different groups.",
+          importance: "Predictive parity helps identify systematic biases.",
           resource: {
-            text: "Case Similarity Metrics Guide",
-            link: "https://example.com/similarity-metrics"
+            text: "COMPAS risk scales: Demonstrating accuracy equity and predictive parity",
+            link: "https://www.documentcloud.org/documents/2998391-ProPublica-Commentary-Final-070616.html"
           }
         },
         {
           id: "f4",
-          text: "Are predictive parity metrics monitored across protected groups?",
+          text: "Are equalized odds metrics regularly evaluated?",
           category: "group",
-          description: "Predictive parity ensures similar prediction accuracy across different groups.",
-          importance: "Group-level fairness metrics help identify and address systematic biases.",
+          description: "Ensures similar error rates across groups.",
+          importance: "Helps ensure no group is systematically disadvantaged.",
           resource: {
-            text: "Guide to Predictive Parity",
-            link: "https://example.com/predictive-parity"
+            text: "Equality of opportunity in supervised learning",
+            link: "https://proceedings.neurips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html"
           }
         },
         {
           id: "f5",
-          text: "Are equalized odds metrics regularly evaluated?",
-          category: "group",
-          description: "Equalized odds ensure similar error rates across groups.",
-          importance: "This metric helps ensure the system isn't systematically advantaging or disadvantaging any group.",
-          resource: {
-            text: "Understanding Equalized Odds",
-            link: "https://example.com/equalized-odds"
-          }
-        },
-        {
-          id: "f6",
-          text: "Is there regular monitoring for disparate impact?",
+          text: "Is there monitoring for disparate impact?",
           category: "group",
           description: "Systems should be monitored for unintended discriminatory effects.",
-          importance: "Identifying and addressing disparate impact is crucial for legal compliance and ethical operation.",
+          importance: "Legal requirement under various civil rights frameworks.",
           resource: {
-            text: "Disparate Impact Analysis Guide",
-            link: "https://example.com/disparate-impact"
+            text: "Big data's disparate impact",
+            link: "https://doi.org/10.15779/Z38BG31"
           }
         }
       ]
@@ -279,42 +246,32 @@ const sections = [
       questions: [
         {
           id: "p1",
-          text: "Does the system implement the principle of least privilege for data access?",
-          description: "Access to data should be limited to what's necessary for each role.",
-          importance: "Least privilege helps prevent unauthorized access and protect sensitive information.",
+          text: "Does the model only ingest variables empirically shown to predict pretrial outcomes?",
+          description: "The system should only use necessary and validated predictive factors.",
+          importance: "Adheres to the principle of least privilege in data collection.",
           resource: {
-            text: "Implementing Least Privilege Access",
-            link: "https://example.com/least-privilege"
+            text: "NIST privacy framework",
+            link: "https://www.nist.gov/privacy-framework"
           }
         },
         {
           id: "p2",
-          text: "Are there controls limiting staff access to only necessary data?",
-          description: "Staff should only have access to data required for their specific duties.",
-          importance: "Role-based access controls are essential for maintaining data privacy and security.",
+          text: "Do court staff only see risk scores and factors directly relevant to pretrial decisions?",
+          description: "Staff should only have access to necessary data for their role.",
+          importance: "Implements the principle of least privilege in data access.",
           resource: {
-            text: "Role-Based Access Control Guide",
-            link: "https://example.com/rbac"
+            text: "NIST privacy framework",
+            link: "https://www.nist.gov/privacy-framework"
           }
         },
         {
           id: "p3",
           text: "Is research conducted using anonymized or aggregated data whenever possible?",
-          description: "Research and analysis should prioritize using de-identified data.",
-          importance: "Using anonymized data helps protect individual privacy while enabling necessary research.",
+          description: "Research should prioritize using de-identified data.",
+          importance: "Protects individual privacy while enabling necessary research.",
           resource: {
-            text: "Data Anonymization Best Practices",
-            link: "https://example.com/anonymization"
-          }
-        },
-        {
-          id: "p4",
-          text: "Does the model only ingest variables empirically shown to predict pretrial outcomes?",
-          description: "The system should only use necessary and validated predictive factors.",
-          importance: "Limiting data use to necessary predictors helps protect privacy and prevent spurious correlations.",
-          resource: {
-            text: "Variable Selection in Risk Assessment",
-            link: "https://example.com/variable-selection"
+            text: "NIST privacy framework",
+            link: "https://www.nist.gov/privacy-framework"
           }
         }
       ]
@@ -325,93 +282,82 @@ const sections = [
         {
           id: "i1",
           text: "Is there public documentation of the model structure and decision-making process?",
-          description: "Model structure and decision processes should be publicly documented.",
-          importance: "Transparency in model structure is crucial for public trust and system verification.",
+          description: "Model structure should be publicly documented.",
+          importance: "Transparency enables verification and builds trust.",
           resource: {
-            text: "Model Documentation Guidelines",
-            link: "https://example.com/model-documentation"
+            text: "The age of secrecy and unfairness in recidivism prediction",
+            link: "https://doi.org/10.1162/99608f92.6ed64b30"
           }
         },
         {
           id: "i2",
           text: "Are there clear procedures for contesting and appealing decisions?",
-          description: "Stakeholders should have clear paths to contest system decisions.",
-          importance: "Appeal procedures are essential for ensuring accountability and addressing errors.",
+          description: "Stakeholders should have clear paths to contest decisions.",
+          importance: "Essential for due process and accountability.",
           resource: {
-            text: "Implementing Appeal Procedures",
-            link: "https://example.com/appeal-procedures"
+            text: "The age of secrecy and unfairness in recidivism prediction",
+            link: "https://doi.org/10.1162/99608f92.6ed64b30"
           }
         },
         {
           id: "i3",
           text: "Is there comprehensive training for system users?",
-          description: "Users should receive thorough training on system operation and limitations.",
-          importance: "User training ensures proper system use and understanding of its capabilities and limitations.",
+          description: "Users should receive thorough training on system operation.",
+          importance: "Ensures proper understanding and use of the system.",
           resource: {
-            text: "Risk Assessment System Training Guide",
-            link: "https://example.com/system-training"
+            text: "Disparate interactions: An algorithm-in-the-loop analysis",
+            link: "https://doi.org/10.1145/3287560.3287563"
           }
         },
         {
           id: "i4",
           text: "Are model updates and changes properly documented?",
-          description: "All system changes should be thoroughly documented and communicated.",
-          importance: "Change documentation ensures transparency and enables proper system oversight.",
+          description: "All system changes should be documented and communicated.",
+          importance: "Maintains transparency and enables oversight.",
           resource: {
-            text: "Model Change Management Best Practices",
-            link: "https://example.com/change-management"
+            text: "The age of secrecy and unfairness in recidivism prediction",
+            link: "https://doi.org/10.1162/99608f92.6ed64b30"
           }
         }
       ]
     },
     {
-      title: "Legal & Political",
+      title: "Governance",
       questions: [
         {
-          id: "l1",
-          text: "Does the system comply with all relevant constitutional and statutory requirements?",
-          description: "System must meet due process and equal protection requirements.",
-          importance: "Constitutional compliance is fundamental for system legitimacy and legal operation.",
+          id: "g1",
+          text: "Does the system comply with due process protections?",
+          description: "System must meet constitutional requirements.",
+          importance: "Constitutional compliance is fundamental for legitimacy.",
           resource: {
-            text: "Legal Requirements in Risk Assessment",
-            link: "https://example.com/legal-requirements"
+            text: "A right to a human decision",
+            link: "https://www.virginialawreview.org/wp-content/uploads/2020/05/106VaLRev611.pdf" 
           }
         },
         {
-          id: "l2",
+          id: "g2",
           text: "Are there established public oversight mechanisms?",
-          description: "Public oversight should be institutionalized and effective.",
-          importance: "Public oversight ensures accountability and maintains democratic control.",
+          description: "Public oversight should be institutionalized.",
+          importance: "Ensures democratic accountability.",
           resource: {
-            text: "Implementing Public Oversight",
-            link: "https://example.com/public-oversight"
+            text: "A right to a human decision",
+            link: "https://www.virginialawreview.org/wp-content/uploads/2020/05/106VaLRev611.pdf"
           }
         },
         {
-          id: "l3",
-          text: "Is there a clear process for regular system evaluation and updates?",
-          description: "Regular evaluation and update procedures should be established.",
-          importance: "Regular evaluation ensures the system remains current and effective.",
+          id: "g3",
+          text: "Is there a clear process for balancing automation and discretion?",
+          description: "System should complement, not replace, judicial discretion.",
+          importance: "Maintains appropriate balance of human and algorithmic decision-making.",
           resource: {
-            text: "System Evaluation Framework",
-            link: "https://example.com/evaluation-framework"
-          }
-        },
-        {
-          id: "l4",
-          text: "Are roles and responsibilities clearly defined within the justice system?",
-          description: "System integration with existing processes should be clearly defined.",
-          importance: "Clear role definition ensures proper system integration and use.",
-          resource: {
-            text: "Role Definition Guidelines",
-            link: "https://example.com/role-definition"
+            text: "A right to a human decision",
+            link: "https://www.virginialawreview.org/wp-content/uploads/2020/05/106VaLRev611.pdf"
           }
         }
       ]
     }
   ];
 
-// Add importance and resource for all sections...
 
 const RiskAssessmentEval = () => {
     const [showWelcome, setShowWelcome] = useState(true);
@@ -493,7 +439,7 @@ const RiskAssessmentEval = () => {
         >
           <CardHeader className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold" style={{ color: '#800000' }}>Risk Assessment System Evaluation</h2>
+              <h2 className="text-2xl font-bold" style={{ color: '#800000' }}>Evaluating Pre-Trial Risk Assessment Algorithms</h2>
               <Progress value={calculateProgress()} className="w-32" style={{ 
                 backgroundColor: '#FFE4E4',
                 ['--tw-gradient-from' as string]: '#FFF1F1', 
